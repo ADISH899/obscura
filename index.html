@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adaptive Math Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container" id="quiz-container">
+    <h2>Adaptive Math Quiz</h2>
+
+    <div class="status">
+        <p><b>Difficulty:</b> <span id="difficulty-label"></span></p>
+        <p><b>Round:</b> <span id="round">1</span>/12</p>
+    </div>
+
+    <p class="question" id="question"></p>
+
+    <input type="number" id="answer" placeholder="Enter your answer" autofocus>
+    <button onclick="submitAnswer()">Submit</button>
+
+    <p id="result"></p>
+    <p id="time"></p>
+    <p class="hint" id="hint"></p>
+</div>
+
+<!-- RESULTS -->
+<div class="container" id="results-container" style="display:none;">
+    <h2>Quiz Results</h2>
+
+    <p>Total Questions: <b id="total-questions"></b></p>
+    <p>Correct Answers: <b id="correct-count"></b></p>
+    <p>Incorrect Answers: <b id="incorrect-count"></b></p>
+    <p>Accuracy: <b id="accuracy-percent"></b>%</p>
+
+    <button onclick="restartQuiz()">Restart Quiz</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
