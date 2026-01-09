@@ -55,7 +55,7 @@ document.getElementById("quiz-title").innerText = `Adaptive ${subjectName} Quiz`
 /* ------------ INPUT TYPE ------------ */
 const answerInput = document.getElementById("answer");
 
-if (type === "science") {
+if (type === "science" || type === "gk") {
     answerInput.type = "text";
     answerInput.placeholder = "Type your answer";
 } else {
@@ -63,14 +63,20 @@ if (type === "science") {
     answerInput.placeholder = "Enter your answer";
 }
 
+
 /* ------------ SCRIPT LOADER ------------ */
 const script = document.createElement("script");
 
 if (type === "science") {
     script.src = "science.js";
-} else {
+} 
+else if (type === "gk") {
+    script.src = "gk.js";
+}
+else {
     script.src = "script.js"; // math
 }
+
 
 script.onerror = () => {
     document.getElementById("question").innerText =

@@ -13,6 +13,10 @@ function startQuiz(type) {
         case "science":
             window.location.href = "index.html?type=science";
             break;
+        case "gk":
+            window.location.href = "index.html?type=gk";
+    break;
+
 
         default:
             // This handles the "Coming Soon" or disabled cards just in case
