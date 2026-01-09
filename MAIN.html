@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Learning Hub</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<div class="menu-container">
+    <h1>Adaptive Learning System</h1>
+    <p class="subtitle">Select a subject to test your knowledge</p>
+
+    <div class="quiz-grid">
+        <div class="quiz-card" onclick="startQuiz('math')">
+            <h3>Math Quiz</h3>
+            <p>Adaptive arithmetic using dynamic difficulty scaling.</p>
+        </div>
+
+        <div class="quiz-card" onclick="startQuiz('science')">
+            <h3>Science Quiz</h3>
+            <p>Adaptive facts covering Biology, Chemistry, and Physics.</p>
+        </div>
+
+        <div class="quiz-card disabled">
+            <h3>CS Quiz</h3>
+            <p>Coming Soon: Logic and Algorithms</p>
+        </div>
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

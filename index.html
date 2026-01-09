@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Adaptive Math Quiz</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container" id="quiz-container">
-    <h2>Adaptive Math Quiz</h2>
+    <h2 id="quiz-title">Loading Quiz...</h2>
 
     <div class="status">
-        <p><b>Difficulty:</b> <span id="difficulty-label"></span></p>
-        <p><b>Round:</b> <span id="round">1</span>/12</p>
+        <p><b>Difficulty:</b> <span id="difficulty-label">1</span></p>
+        <p><b>Round:</b> <span id="round">1</span></p>
     </div>
 
-    <p class="question" id="question"></p>
+    <p class="question" id="question">Loading question...</p>
 
-    <input type="number" id="answer" placeholder="Enter your answer" autofocus>
-    <button onclick="submitAnswer()">Submit</button>
+    <input id="answer" autocomplete="off" autofocus>
+
+    <button id="submit-btn" onclick="submitAnswer()">Submit</button>
 
     <p id="result"></p>
     <p id="time"></p>
@@ -28,16 +29,56 @@
 
 <!-- RESULTS -->
 <div class="container" id="results-container" style="display:none;">
-    <h2>Quiz Results</h2>
+    <h2>Quiz Complete!</h2>
 
     <p>Total Questions: <b id="total-questions"></b></p>
-    <p>Correct Answers: <b id="correct-count"></b></p>
-    <p>Incorrect Answers: <b id="incorrect-count"></b></p>
-    <p>Accuracy: <b id="accuracy-percent"></b>%</p>
+    <p>Correct Answers: <b id="correct-count">0</b></p>
+    <p>Incorrect Answers: <b id="incorrect-count">0</b></p>
+    <p>Accuracy: <b id="accuracy-percent">0</b>%</p>
 
-    <button onclick="restartQuiz()">Restart Quiz</button>
+    <button onclick="restartQuiz()">Play Again</button>
+    <button onclick="window.location.href='MAIN.html'" style="margin-top: 10px;">
+        Back to Menu
+    </button>
 </div>
 
-<script src="script.js"></script>
+<script>
+/* ------------ SUBJECT SELECTION ------------ */
+const params = new URLSearchParams(window.location.search);
+const type = params.get("type") || "math";
+
+/* ------------ TITLE ------------ */
+const subjectName = type.charAt(0).toUpperCase() + type.slice(1);
+document.title = `Adaptive ${subjectName} Quiz`;
+document.getElementById("quiz-title").innerText = `Adaptive ${subjectName} Quiz`;
+
+/* ------------ INPUT TYPE ------------ */
+const answerInput = document.getElementById("answer");
+
+if (type === "science") {
+    answerInput.type = "text";
+    answerInput.placeholder = "Type your answer";
+} else {
+    answerInput.type = "number";
+    answerInput.placeholder = "Enter your answer";
+}
+
+/* ------------ SCRIPT LOADER ------------ */
+const script = document.createElement("script");
+
+if (type === "science") {
+    script.src = "science.js";
+} else {
+    script.src = "script.js"; // math
+}
+
+script.onerror = () => {
+    document.getElementById("question").innerText =
+        "Error loading quiz module.";
+};
+
+document.body.appendChild(script);
+</script>
+
 </body>
 </html>
